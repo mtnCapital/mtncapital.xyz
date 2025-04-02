@@ -1,0 +1,7 @@
+# This file defines who is responsible for code in this repository
+# Format: file_pattern username1 username2
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owner for everything in the repo
+* edgarpavlovsky
+* b-willy
