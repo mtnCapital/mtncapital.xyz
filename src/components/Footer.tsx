@@ -50,7 +50,7 @@ export function Footer() {
             </div>
             
             <div className="text-xs text-mtn-blue">
-              © {new Date().getFullYear()} mtnCapital. All rights reserved.
+              © {new Date().getFullYear()} MTN DAO LLC. All rights reserved.
             </div>
           </div>
         </div>
