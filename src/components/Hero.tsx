@@ -3,13 +3,13 @@ import { LinkButton } from './LinkButton';
 
 export function Hero() {
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-b from-blue-50 to-green-50">
+    <section className="relative py-24 md:py-36 overflow-hidden bg-gradient-to-b from-blue-900/10 via-blue-800/5 to-emerald-900/5">
       <div className="container">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-mtn-blue to-emerald-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-mtn-blue to-emerald-400 bg-clip-text text-transparent pb-2">
             The first-ever fund to be governed by futarchy
           </h1>
-          <p className="text-lg md:text-xl text-mtn-blue mb-10 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-mtn-blue mb-12 max-w-2xl mx-auto">
             mtnCapital is pioneering a new approach to investment management, where market predictions guide governance decisions.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -22,7 +22,7 @@ export function Hero() {
           </div>
         </div>
       </div>
-      <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-gradient-radial from-emerald-400/20 to-transparent opacity-50 blur-3xl"></div>
+      <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-gradient-radial from-emerald-400/10 to-transparent opacity-50 blur-3xl"></div>
       <div className="absolute -top-16 -left-16 w-64 h-64 bg-gradient-radial from-mtn-blue/20 to-transparent opacity-50 blur-3xl"></div>
     </section>
   );
