@@ -7,7 +7,7 @@ export function Hero() {
       <div className="container">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-mtn-blue to-emerald-400 bg-clip-text text-transparent pb-2">
-            The first-ever fund to be governed by futarchy
+            The first-ever fund to be governed by futarchy.
           </h1>
           <p className="text-lg md:text-xl text-mtn-blue mb-12 max-w-2xl mx-auto">
             mtnCapital is pioneering a new approach to investment management, where market predictions guide governance decisions.

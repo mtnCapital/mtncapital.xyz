@@ -14,7 +14,7 @@ export function Footer() {
               className="h-8 md:h-10 w-auto" 
             />
             <p className="text-mtn-blue text-sm mt-2">
-              The first-ever fund to be governed by futarchy
+              The first-ever fund to be governed by futarchy.
             </p>
           </div>
           
