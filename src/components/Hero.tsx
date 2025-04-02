@@ -13,7 +13,7 @@ export function Hero() {
             mtnCapital is pioneering a new approach to investment management, where market predictions guide governance decisions.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <LinkButton href="https://x.com/mtndao/status/1907140496709075404" className="bg-mtn-blue hover:bg-mtn-blue/90">
+            <LinkButton href="https://x.com/mtndao/status/1907140496709075404" variant="outline" className="border-mtn-blue text-mtn-blue hover:bg-mtn-blue/10">
               Read about $MTN
             </LinkButton>
             <LinkButton 
