@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ExternalLink, Github, Twitter } from 'lucide-react';
 
@@ -7,19 +6,19 @@ export function Footer() {
     <footer className="w-full py-12 border-t border-mtn-light">
       <div className="container">
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-8 md:mb-0">
+          <div className="mb-8 md:mb-0 flex flex-col items-center md:items-start">
             <img 
               src="/wordmark.png" 
               alt="mtnCapital Wordmark" 
               className="h-8 md:h-10 w-auto" 
             />
-            <p className="text-mtn-blue text-sm mt-2">
+            <p className="text-mtn-blue text-sm mt-2 text-center md:text-left">
               The first-ever fund to be governed by futarchy.
             </p>
           </div>
           
-          <div className="flex flex-col space-y-6">
-            <div className="flex space-x-6">
+          <div className="flex flex-col space-y-6 items-center md:items-end">
+            <div className="flex space-x-6 justify-center md:justify-end">
               <a 
                 href="https://www.x.com/mtndao" 
                 target="_blank" 
@@ -49,7 +48,7 @@ export function Footer() {
               </a>
             </div>
             
-            <div className="text-xs text-mtn-blue">
+            <div className="text-xs text-mtn-blue text-center md:text-right">
               © {new Date().getFullYear()} MTN DAO LLC. All rights reserved.
             </div>
           </div>
