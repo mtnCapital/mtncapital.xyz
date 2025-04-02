@@ -22,9 +22,6 @@ export function Hero() {
             >
               Join the Token Sale →
             </LinkButton>
-            <LinkButton href="https://www.metadao.fi" variant="outline" className="border-mtn-blue text-mtn-blue hover:bg-mtn-blue/10">
-              Trade the futarchy markets
-            </LinkButton>
           </div>
         </div>
       </div>

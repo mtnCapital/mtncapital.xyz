@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import OA from "./pages/OA";
 import NotFound from "./pages/NotFound";
+import TokenLaunchDisclaimer from "./pages/token-launch-disclaimer";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +19,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/oa" element={<OA />} />
+          <Route path="/token-launch-disclaimer" element={<TokenLaunchDisclaimer />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
