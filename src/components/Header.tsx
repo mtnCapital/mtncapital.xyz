@@ -45,7 +45,7 @@ export function Header() {
               "text-mtn-darkblue hover:text-mtn-purple transition-colors text-sm font-medium"
             )}
           >
-            OA
+            DAO Operating Agreement
           </Link>
         </nav>
       </div>
