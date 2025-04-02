@@ -9,7 +9,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-8 md:mb-0">
             <img 
-              src="/lovable-uploads/13baa8a1-0d0a-4c14-b333-bc4e40f33784.png" 
+              src="/wordmark.png" 
               alt="mtnCapital Wordmark" 
               className="h-8 md:h-10 w-auto" 
             />

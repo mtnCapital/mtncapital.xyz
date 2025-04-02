@@ -9,7 +9,7 @@ export function Header() {
       <div className="container flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
           <img 
-            src="/lovable-uploads/4d919970-0438-40eb-8e72-cbc2f5897d6d.png" 
+            src="/logo.png" 
             alt="mtnCapital Logo" 
             className="h-12 w-auto" 
           />
@@ -29,7 +29,7 @@ export function Header() {
             rel="noopener noreferrer"
             className="text-mtn-darkblue hover:text-mtn-purple transition-colors text-sm font-medium"
           >
-            $MTN
+            About $MTN
           </a>
           <a 
             href="https://www.metadao.fi" 
@@ -37,7 +37,7 @@ export function Header() {
             rel="noopener noreferrer"
             className="text-mtn-darkblue hover:text-mtn-purple transition-colors text-sm font-medium"
           >
-            Markets
+            Governance
           </a>
           <Link 
             to="/oa" 
