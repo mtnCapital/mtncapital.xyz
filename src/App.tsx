@@ -8,6 +8,8 @@ import Index from "./pages/Index";
 import OA from "./pages/OA";
 import NotFound from "./pages/NotFound";
 import TokenLaunchDisclaimer from "./pages/disclaimer";
+import Resources from "./pages/resources";
+import InvestmentProposalTemplate from "./pages/investment-proposal-template";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +23,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/oa" element={<OA />} />
           <Route path="/disclaimer" element={<TokenLaunchDisclaimer />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/resources/investment-proposal-template" element={<InvestmentProposalTemplate />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

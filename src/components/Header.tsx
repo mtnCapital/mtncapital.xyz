@@ -28,10 +28,8 @@ const NavLinks = ({ className, onClick }: { className?: string; onClick?: () => 
     >
       About $MTN
     </a>
-    <a 
-      href="https://www.metadao.fi" 
-      target="_blank" 
-      rel="noopener noreferrer"
+    <Link 
+      to="/resources" 
       className={cn(
         "text-mtn-darkblue hover:text-mtn-purple transition-colors text-sm font-medium",
         className
@@ -39,7 +37,7 @@ const NavLinks = ({ className, onClick }: { className?: string; onClick?: () => 
       onClick={onClick}
     >
       Governance
-    </a>
+    </Link>
     <Link 
       to="/oa" 
       className={cn(
