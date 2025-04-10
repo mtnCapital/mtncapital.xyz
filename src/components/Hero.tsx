@@ -16,12 +16,6 @@ export function Hero() {
             <LinkButton href="https://x.com/mtndao/status/1907140496709075404" variant="outline" className="border-mtn-blue text-mtn-blue hover:bg-mtn-blue/10">
               Read about $MTN
             </LinkButton>
-            <LinkButton 
-              href="https://metadao.fi/launchpad/projects/a3wqnp5LSi84ShMFwfPgULA3rVaNcL67UwTyccbMDNo" 
-              className="bg-gradient-to-r from-mtn-blue to-emerald-400 hover:opacity-90 text-white font-semibold"
-            >
-              Join the Token Sale →
-            </LinkButton>
           </div>
         </div>
       </div>
