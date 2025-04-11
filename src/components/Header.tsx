@@ -16,6 +16,16 @@ const NavLinks = ({ className, onClick }: { className?: string; onClick?: () => 
     >
       Home
     </Link>
+    <Link 
+      to="/dashboard" 
+      className={cn(
+        "text-mtn-darkblue hover:text-mtn-purple transition-colors text-sm font-medium",
+        className
+      )}
+      onClick={onClick}
+    >
+      Dashboard
+    </Link>
     <a 
       href="https://x.com/mtndao/status/1907140496709075404" 
       target="_blank" 
