@@ -97,6 +97,9 @@ const Dashboard = () => {
   
   // Calculate outstanding tokens (total supply minus tokens in LP)
   const outstandingTokens = (mtnTotalSupply || 0) - (mtnInLp || 0);
+  
+  // Calculate USDC per outstanding token
+  const usdcPerToken = outstandingTokens > 0 ? totalUsdcBalance / outstandingTokens : 0;
 
   return (
     <Layout>
@@ -164,7 +167,7 @@ const Dashboard = () => {
             
             <Card className="border-mtn-light">
               <CardHeader className="pb-2">
-                <CardTitle className="text-lg text-mtn-darkblue">Outstanding Tokens</CardTitle>
+                <CardTitle className="text-lg text-mtn-darkblue">Outstanding $MTN</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-3xl font-bold text-mtn-dark">
@@ -217,11 +220,20 @@ const Dashboard = () => {
             </Card>
           </div>
           
-          {/* Additional dashboard content can be added here */}
+          {/* USDC per Token Box - replacing Recent Activity */}
           <div className="bg-white rounded-lg shadow-sm p-8 md:p-10 text-mtn-dark">
-            <h2 className="text-xl font-bold mb-6">Recent Activity</h2>
-            <p className="text-mtn-blue">
-              No recent activity to display. Check back soon for updates on investments and governance decisions.
+            <h3 className="text-lg md:text-xl font-medium mb-3 text-mtn-darkblue">USDC per outstanding $MTN</h3>
+            <div className="text-2xl md:text-4xl font-bold text-mtn-blue">
+              {isLoading ? (
+                <span className="text-mtn-blue/50">Loading...</span>
+              ) : error ? (
+                <span className="text-red-500 text-base">Error calculating</span>
+              ) : (
+                `$${usdcPerToken.toFixed(4)}`
+              )}
+            </div>
+            <p className="text-sm md:text-base mt-3 text-mtn-darkblue/80">
+              If the treasury were liquidated at these prices, this is how much USDC each token would receive.
             </p>
           </div>
         </div>
