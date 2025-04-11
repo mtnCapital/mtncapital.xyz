@@ -9,11 +9,13 @@ import { getAssociatedTokenAddressSync, TOKEN_PROGRAM_ID } from '@solana/spl-tok
 const Dashboard = () => {
   const [usdcInTreasury, setUsdcInTreasury] = useState<number | null>(null);
   const [usdcInLp, setUsdcInLp] = useState<number | null>(null);
+  const [mtnTotalSupply, setMtnTotalSupply] = useState<number | null>(null);
+  const [mtnInLp, setMtnInLp] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchTreasuryBalance = async () => {
+    const fetchBalances = async () => {
       try {
         setIsLoading(true);
         
@@ -21,9 +23,11 @@ const Dashboard = () => {
         const connection = new Connection('https://mainnet.helius-rpc.com/?api-key=5651eea3-b8b8-4385-860e-84ed72f49040', 'confirmed');
 
         const USDC_MINT = new PublicKey('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v');
+        const MTN_MINT = new PublicKey('mtnc7NNSpAJuvYNmayXU63WhWZGgFzwQ2yeYWqemeta');
         const MTN_LP_MINT = new PublicKey('6mnrEFQoYs7LujnQfWL3d9reYfEb3N1EN3qLk8dtSWj4');
         const DAO_TREASURY_ADDRESS = new PublicKey('AQfP7s3m2zJh3pE57yHqErZ3uqzSArarr7ZwnhZHFLQE');
         const LP_USDC_ACCOUNT = new PublicKey('CNvBqPRD2D3F9DNhRT1TvSgmjZh33CdMUUzeciPEt92D');
+        const LP_MTN_ACCOUNT = new PublicKey('HK4RW9MfA4iSb8EPavXDGmJc1zzrrs7ZtTxdTZaqWMdJ');
         
         // Find the associated token account for the treasury
         const usdcAccount = await connection.getTokenAccountBalance(
@@ -35,6 +39,7 @@ const Dashboard = () => {
         );
 
         const mtnLpSupply = await connection.getTokenSupply(MTN_LP_MINT);
+        const mtnSupply = await connection.getTokenSupply(MTN_MINT);
 
         const daoLPShare = mtnLpAccount.value.uiAmount / mtnLpSupply.value.uiAmount;
 
@@ -42,12 +47,19 @@ const Dashboard = () => {
           LP_USDC_ACCOUNT,
         );
 
+        const lpMtnAccount = await connection.getTokenAccountBalance(
+          LP_MTN_ACCOUNT,
+        );
+
         const usdcHeldInLp = lpUsdcAccount.value.uiAmount * daoLPShare;
         console.log("USDC held in LP:", usdcHeldInLp);
 
+        const mtnHeldInLp = lpMtnAccount.value.uiAmount;
+        console.log("MTN held in LP:", mtnHeldInLp);
+        
+        console.log("MTN total supply:", mtnSupply.value.uiAmount);
         console.log("MTN LP supply:", mtnLpSupply);
         console.log("MTN LP account:", mtnLpAccount);
-        
         console.log("Token accounts:", usdcAccount);
         
         // Set USDC in treasury
@@ -63,19 +75,28 @@ const Dashboard = () => {
         // Set USDC in LP
         setUsdcInLp(usdcHeldInLp || 0);
         
+        // Set MTN total supply
+        setMtnTotalSupply(mtnSupply.value.uiAmount || 0);
+        
+        // Set MTN in LP
+        setMtnInLp(mtnHeldInLp || 0);
+        
         setIsLoading(false);
       } catch (err) {
-        console.error('Error fetching treasury balance:', err);
-        setError('Failed to fetch treasury balance');
+        console.error('Error fetching balances:', err);
+        setError('Failed to fetch balances');
         setIsLoading(false);
       }
     };
 
-    fetchTreasuryBalance();
+    fetchBalances();
   }, []);
 
   // Calculate total USDC balance
   const totalUsdcBalance = (usdcInTreasury || 0) + (usdcInLp || 0);
+  
+  // Calculate outstanding tokens (total supply minus tokens in LP)
+  const outstandingTokens = (mtnTotalSupply || 0) - (mtnInLp || 0);
 
   return (
     <Layout>
@@ -147,7 +168,13 @@ const Dashboard = () => {
               </CardHeader>
               <CardContent>
                 <div className="text-3xl font-bold text-mtn-dark">
-                  9,950,000
+                  {isLoading ? (
+                    <span className="text-mtn-blue/50">Loading...</span>
+                  ) : error ? (
+                    <span className="text-red-500 text-base">Error loading tokens</span>
+                  ) : (
+                    outstandingTokens.toLocaleString(undefined, { maximumFractionDigits: 0 })
+                  )}
                 </div>
                 
                 {/* Breakdown of Outstanding Tokens */}
@@ -155,14 +182,34 @@ const Dashboard = () => {
                   <div className="flex flex-col space-y-2">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-mtn-darkblue">Total supply</span>
-                      <span className="text-sm font-medium text-mtn-dark">11,000,000</span>
+                      <span className="text-sm font-medium text-mtn-dark">
+                        {isLoading ? (
+                          <span className="text-mtn-blue/50">Loading...</span>
+                        ) : error ? (
+                          <span className="text-red-500 text-xs">Error</span>
+                        ) : (
+                          mtnTotalSupply !== null ? 
+                            mtnTotalSupply.toLocaleString(undefined, { maximumFractionDigits: 0 }) : 
+                            '0'
+                        )}
+                      </span>
                     </div>
                     <div className="flex justify-center">
                       <span className="text-mtn-blue">−</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-mtn-darkblue">Held in LP</span>
-                      <span className="text-sm font-medium text-mtn-dark">1,050,000</span>
+                      <span className="text-sm font-medium text-mtn-dark">
+                        {isLoading ? (
+                          <span className="text-mtn-blue/50">Loading...</span>
+                        ) : error ? (
+                          <span className="text-red-500 text-xs">Error</span>
+                        ) : (
+                          mtnInLp !== null ? 
+                            mtnInLp.toLocaleString(undefined, { maximumFractionDigits: 0 }) : 
+                            '0'
+                        )}
+                      </span>
                     </div>
                   </div>
                 </div>
