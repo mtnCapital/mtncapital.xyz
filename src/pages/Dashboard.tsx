@@ -20,7 +20,7 @@ const Dashboard = () => {
         setIsLoading(true);
         
         // Connect to Solana mainnet
-        const connection = new Connection('https://mainnet.helius-rpc.com/?api-key=5651eea3-b8b8-4385-860e-84ed72f49040', 'confirmed');
+        const connection = new Connection('https://aggi-gdsog1-fast-mainnet.helius-rpc.com', 'confirmed');
 
         const USDC_MINT = new PublicKey('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v');
         const MTN_MINT = new PublicKey('mtnc7NNSpAJuvYNmayXU63WhWZGgFzwQ2yeYWqemeta');
