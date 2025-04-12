@@ -11,6 +11,7 @@ import TokenLaunchDisclaimer from "./pages/disclaimer";
 import Resources from "./pages/resources";
 import InvestmentProposalTemplate from "./pages/investment-proposal-template";
 import IdleCapitalRFP from "./pages/idle-capital-rfp";
+import Dashboard from "./pages/Dashboard";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/resources" element={<Resources />} />
           <Route path="/resources/investment-proposal-template" element={<InvestmentProposalTemplate />} />
           <Route path="/resources/idle-capital-rfp" element={<IdleCapitalRFP />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
