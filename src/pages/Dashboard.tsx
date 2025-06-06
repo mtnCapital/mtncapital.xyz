@@ -14,6 +14,8 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const INACCESSIBLE_TOKEN_SUPPLY = 69_000;
+
   useEffect(() => {
     const fetchBalances = async () => {
       try {
@@ -96,7 +98,7 @@ const Dashboard = () => {
   const totalUsdcBalance = (usdcInTreasury || 0) + (usdcInLp || 0);
   
   // Calculate outstanding tokens (total supply minus tokens in LP)
-  const outstandingTokens = (mtnTotalSupply || 0) - (mtnInLp || 0);
+  const outstandingTokens = (mtnTotalSupply || 0) - (mtnInLp || 0) - INACCESSIBLE_TOKEN_SUPPLY;
   
   // Calculate USDC per outstanding token
   const usdcPerToken = outstandingTokens > 0 ? totalUsdcBalance / outstandingTokens : 0;
@@ -192,8 +194,8 @@ const Dashboard = () => {
                           <span className="text-red-500 text-xs">Error</span>
                         ) : (
                           mtnTotalSupply !== null ? 
-                            mtnTotalSupply.toLocaleString(undefined, { maximumFractionDigits: 0 }) : 
-                            '0'
+                            `${mtnTotalSupply.toLocaleString(undefined, { maximumFractionDigits: 0 })}*` : 
+                            '0*'
                         )}
                       </span>
                     </div>
@@ -234,6 +236,10 @@ const Dashboard = () => {
             </div>
             <p className="text-sm md:text-base mt-3 text-mtn-darkblue/80">
               If the treasury were liquidated at these prices, this is how much USDC each token would receive.
+            </p>
+            <p className="text-xs mt-3 text-mtn-darkblue/80">
+              *There is 69,000 $MTN that cannot be accessed due to a transfer to the token mint account via this transaction: 
+              <a href="https://solscan.io/tx/4PHu8hnL5D3cHH1u2L3oy4uZgQQhyYwELbHEcYtJ2pcvRne71DWYgLunvmTxpHQ3zRUeGDoWLCYXXgZ2cZSEpNpe" className="text-mtn-blue text-xs">4PHu8hnL5D3cHH1u2L3oy4uZgQQhyYwELbHEcYtJ2pcvRne71DWYgLunvmTxpHQ3zRUeGDoWLCYXXgZ2cZSEpNpe</a>
             </p>
           </div>
         </div>
